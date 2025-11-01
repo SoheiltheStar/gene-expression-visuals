@@ -1,31 +1,36 @@
 # Gene Expression Visuals
 
-Interactive portfolio-ready walkthrough that takes a public RNA-seq dataset, extracts a focused story, and delivers polished visual analytics (volcano plot, heatmap, PCA, classifier diagnostics) through a Streamlit app and notebook highlights.
+[![CI](https://github.com/SoheiltheStar/gene-expression-visuals/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/SoheiltheStar/gene-expression-visuals/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+Interactive RNA-seq analysis and dashboard showcasing differential expression (volcano), clustered heatmap, PCA, and a lightweight classifier. Built for portfolio/demo use: fast, reproducible, and easy to deploy.
 
 ## Dataset
 
-- Source: GEO accession [GSE5278](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE5278) (Airway epithelial dexamethasone study)
-- License: Public domain (U.S. government work). Script `scripts/prepare_airway_subset.py` downloads the series matrix, derives tidy tables, and stores them under `data/processed/`.
-- Processed artifacts bundled in the repo are lightweight subsets for immediate exploration. Re-run the script to regenerate them from raw GEO data.
+- Source: GEO accession [GSE52778](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52778) (Airway smooth muscle; Dex vs Untreated)
+- Script `scripts/prepare_airway_subset.py` downloads the supplementary FPKM matrix and generates tidy processed tables under `data/processed/`.
+- Processed artifacts are included for immediate exploration; re-run the script to regenerate as needed.
 
 ## Quickstart
 
 ```bash
 python -m venv .venv
 .\.venv\Scripts\activate
-pip install -e .
-python scripts/prepare_airway_subset.py  # refresh processed data
+pip install -e .[dev]
+# optional: refresh processed data
+python scripts/prepare_airway_subset.py
 streamlit run app/streamlit_app.py
 ```
 
-Optional: run smoke tests with `pytest`.
+Optional: `pytest` to run smoke tests.
 
 ## Visual Story Highlights
 
 - Interactive volcano plot with significance and effect filters
 - Clustered heatmap of the top differentially expressed genes
 - PCA scatter with condition-aware shading and sample hovercards
-- Lightweight logistic regression classifier with feature importances and ROC curve
+- Logistic regression classifier with feature importances and ROC curve
 
 ## Project Layout
 
@@ -50,15 +55,16 @@ gene-expression-visuals/
 └── .env.example
 ```
 
+## Deployment
+
+- Streamlit Cloud: push this repo and set the app entrypoint to `app/streamlit_app.py`. No secrets required.
+- Local container (optional): create a minimal Dockerfile if needed; Streamlit runs on port 8501.
+
 ## Portfolio Positioning
 
-- Demonstrates end-to-end ownership: raw data ingestion → statistical testing → ML signal → interactive storytelling
-- Highlights reproducibility (scripted download, deterministic processing) and clean packaging (pyproject, tests, lint config)
-- Easy to extend with additional dashboards (survival curves, enrichment analyses) or deployment to Streamlit Cloud
+- End-to-end ownership: data ingest → stats → ML → interactive storytelling
+- Reproducible and maintainable: scripted prep, tests, packaging, and CI
+- Easy to extend: survival curves, enrichment, or additional biomarker panels
 
-## Next Steps
-
-- Add companion notebook under `notebooks/` with narrative screenshots for static portfolio embeds
-- Export key figures to `docs/` for quick inclusion on Upwork profile
-- Deploy the Streamlit app publicly and link it in your portfolio description
+Repo: `https://github.com/SoheiltheStar/gene-expression-visuals`
 
