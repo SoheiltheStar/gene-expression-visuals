@@ -1,0 +1,9 @@
+sample_id,treatment,replicate,condition
+Dex_LL02,Dex,LL02,treated
+Dex_LL06,Dex,LL06,treated
+Dex_LL10,Dex,LL10,treated
+Dex_LL14,Dex,LL14,treated
+Untreated_LL01,Untreated,LL01,control
+Untreated_LL05,Untreated,LL05,control
+Untreated_LL09,Untreated,LL09,control
+Untreated_LL13,Untreated,LL13,control

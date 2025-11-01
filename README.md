@@ -1,0 +1,64 @@
+# Gene Expression Visuals
+
+Interactive portfolio-ready walkthrough that takes a public RNA-seq dataset, extracts a focused story, and delivers polished visual analytics (volcano plot, heatmap, PCA, classifier diagnostics) through a Streamlit app and notebook highlights.
+
+## Dataset
+
+- Source: GEO accession [GSE5278](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE5278) (Airway epithelial dexamethasone study)
+- License: Public domain (U.S. government work). Script `scripts/prepare_airway_subset.py` downloads the series matrix, derives tidy tables, and stores them under `data/processed/`.
+- Processed artifacts bundled in the repo are lightweight subsets for immediate exploration. Re-run the script to regenerate them from raw GEO data.
+
+## Quickstart
+
+```bash
+python -m venv .venv
+.\.venv\Scripts\activate
+pip install -e .
+python scripts/prepare_airway_subset.py  # refresh processed data
+streamlit run app/streamlit_app.py
+```
+
+Optional: run smoke tests with `pytest`.
+
+## Visual Story Highlights
+
+- Interactive volcano plot with significance and effect filters
+- Clustered heatmap of the top differentially expressed genes
+- PCA scatter with condition-aware shading and sample hovercards
+- Lightweight logistic regression classifier with feature importances and ROC curve
+
+## Project Layout
+
+```
+gene-expression-visuals/
+├── app/                     # Streamlit UI entrypoint
+├── data/
+│   ├── processed/           # Tidy subsets for visuals (generated)
+│   └── raw/                 # GEO downloads (gitignored)
+├── docs/                    # Narrative notes and visuals exports
+├── notebooks/               # Optional exploratory notebooks (templates)
+├── scripts/                 # CLI utilities (data prep)
+├── src/gene_expression_visuals/
+│   ├── __init__.py
+│   ├── analysis.py
+│   ├── data_loader.py
+│   ├── ml.py
+│   └── visualization.py
+├── tests/                   # Pytest-based smoke checks
+├── pyproject.toml
+├── README.md
+└── .env.example
+```
+
+## Portfolio Positioning
+
+- Demonstrates end-to-end ownership: raw data ingestion → statistical testing → ML signal → interactive storytelling
+- Highlights reproducibility (scripted download, deterministic processing) and clean packaging (pyproject, tests, lint config)
+- Easy to extend with additional dashboards (survival curves, enrichment analyses) or deployment to Streamlit Cloud
+
+## Next Steps
+
+- Add companion notebook under `notebooks/` with narrative screenshots for static portfolio embeds
+- Export key figures to `docs/` for quick inclusion on Upwork profile
+- Deploy the Streamlit app publicly and link it in your portfolio description
+
